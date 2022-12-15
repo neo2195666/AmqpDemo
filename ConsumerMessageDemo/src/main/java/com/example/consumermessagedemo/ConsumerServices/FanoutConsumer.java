@@ -1,20 +1,18 @@
 package com.example.consumermessagedemo.ConsumerServices;
 
-import org.springframework.amqp.core.AmqpTemplate;
+/**
+ * Fanout 交换器
+ * @param message
+ */
+
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FanoutConsumer {
-    /**
-     * Fanout 交换器
-     * @param message
-     */
-
     @RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue(name = "fanout-queue-1",autoDelete = "false"),

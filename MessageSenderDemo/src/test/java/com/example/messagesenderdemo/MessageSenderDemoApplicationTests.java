@@ -37,7 +37,7 @@ class MessageSenderDemoApplicationTests {
     @Test
     public void providerDirect(){
 
-        for (int i = 0; i < 10000000; i++) {
+        for (int i = 0; i < 1000; i++) {
             String message = "第" + i + "信息";
             amqpTemplate.convertAndSend("ex-direct","direct-route-key",message);
         }
