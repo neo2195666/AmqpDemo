@@ -40,6 +40,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.7.6</version>
         </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>MessageDemo</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
