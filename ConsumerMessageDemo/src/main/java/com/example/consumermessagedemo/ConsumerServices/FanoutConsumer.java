@@ -16,7 +16,7 @@ public class FanoutConsumer {
     @RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue(name = "fanout-queue-1",autoDelete = "false"),
-                    exchange = @Exchange(name = "ex-fanout",type = "fanout")
+                    exchange = @Exchange(name = "ex-fanout-1",type = "fanout")
             )
     })
     public void fanoutConsumerTest1(String message){
@@ -26,7 +26,7 @@ public class FanoutConsumer {
     @RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue(name = "fanout-queue-2",autoDelete = "false"),
-                    exchange = @Exchange(name = "ex-fanout",type = "fanout")
+                    exchange = @Exchange(name = "ex-fanout-1",type = "fanout")
             )
     })
     public void fanoutConsumerTest2(String message){
@@ -37,7 +37,7 @@ public class FanoutConsumer {
     @RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue(name = "fanout-queue-3",autoDelete = "false"),
-                    exchange = @Exchange(name = "ex-fanout",type = "fanout")
+                    exchange = @Exchange(name = "ex-fanout-1",type = "fanout")
             )
     })
     public void fanoutConsumerTest3(String message){

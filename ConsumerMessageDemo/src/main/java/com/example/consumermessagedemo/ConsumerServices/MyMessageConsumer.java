@@ -45,8 +45,8 @@ public class MyMessageConsumer {
 
     @RabbitListener(bindings = {
             @QueueBinding(
-                    value = @Queue(name = "direct-mq1",autoDelete = "false"),
-                    exchange = @Exchange(name = "ex-direct",autoDelete = "false",type = "direct"),
+                    value = @Queue(name = "direct-queue-2",autoDelete = "false"),
+                    exchange = @Exchange(name = "ex-direct-02",autoDelete = "false",type = "direct"),
                     key = {"direct-route-key"}
             )
     })

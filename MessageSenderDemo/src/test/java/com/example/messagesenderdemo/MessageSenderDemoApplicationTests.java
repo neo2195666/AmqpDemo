@@ -30,7 +30,8 @@ class MessageSenderDemoApplicationTests {
          * 这是异步方法：只发送消息，是否有消费者，是否被消费，都不在意。
          * convertAndSend(交换机，路由健，消息体),
          */
-        amqpTemplate.convertAndSend("ex-direct","direct-route-key",new Date());
+
+        amqpTemplate.convertAndSend("ex-direct-01","direct-routing-key",new Date());
         System.out.println("消息发送成功");
     }
 
@@ -39,23 +40,32 @@ class MessageSenderDemoApplicationTests {
 
         for (int i = 0; i < 1000; i++) {
             String message = "第" + i + "信息";
-            amqpTemplate.convertAndSend("ex-direct","direct-route-key",message);
+            amqpTemplate.convertAndSend("ex-direct-01","direct-routing-key",message);
         }
         System.out.println("消息发送成功");
     }
 
     @Test
     public void provideMyMsgDirect(){
-        MyMessage myMessage = new MyMessage(1,"自定义消息");
-        amqpTemplate.convertAndSend("ex-direct","direct-route-key",myMessage);
+        MyMessage myMessage = new MyMessage(100,"自定义消息");
+        amqpTemplate.convertAndSend("ex-direct-01","direct-routing-key",myMessage);
         System.out.println("自定义消息消息发送成功");
     }
 
     @Test
     public void fanoutTest(){
         for (int i = 0; i < 100; i++)
-            amqpTemplate.convertAndSend("ex-fanout","第" + i + "条数据");
+            amqpTemplate.convertAndSend("ex-fanout-1","null","第" + i + "条数据");
         System.out.println("Fanout交换器测试数据发送完毕");
+    }
+
+    //direct 交换器 消费者集群
+    @Test
+    public void directConsumerCluster(){
+        for (int i = 1; i < 1000; i++) {
+            amqpTemplate.convertAndSend("ex-direct-03","direct-routing-key-3","第"+i+"条测试数据");
+        }
+        System.out.println("消费者集群发送测试数据完毕");
     }
 
 }
